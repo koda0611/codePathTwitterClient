@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.codepath.apps.mysimpletweets.activities.ComposeActivity">
+    <android.support.v7.widget.Toolbar
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tbCompose"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="@color/twitter_blue">
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/ivComposeProfileImage"
+        android:layout_below="@+id/tbCompose"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ivComposeProfileImage"
+        android:layout_alignTop="@+id/ivComposeProfileImage"
+        android:id="@+id/tvComposeUserName"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ivComposeProfileImage"
+        android:layout_alignBottom="@+id/ivComposeProfileImage"
+        android:id="@+id/tvComposeScreenName"
+        android:textColor="@color/grey"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:textSize="16sp"
+        android:id="@+id/etTweet"
+        android:hint="What's happening?"
+        android:textColorHint="@color/grey"
+        android:layout_alignLeft="@+id/ivComposeProfileImage"
+        android:layout_alignStart="@+id/ivComposeProfileImage"
+        android:layout_below="@+id/ivComposeProfileImage"
+        android:background="#00000000"/>
+
+
+</RelativeLayout>
