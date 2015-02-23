@@ -54,8 +54,8 @@
             android:label="@string/title_activity_timeline" >
         </activity>
         <activity
+            android:windowSoftInputMode="stateVisible"
             android:name=".activities.ComposeActivity">
-
         </activity>
     </application>
 

@@ -81,7 +81,7 @@ public class ComposeActivity extends ActionBarActivity {
             }
         });
         if (tweetToReplyTo != null) {
-            etTweet.setText("@" + tweetToReplyTo.getUser().getScreenName());
+            etTweet.setText("@" + tweetToReplyTo.getUser().getScreenName() + " ");
             etTweet.setSelection(etTweet.getText().length());
         }
     }
