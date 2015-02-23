@@ -1,6 +1,9 @@
 package com.codepath.apps.mysimpletweets.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -81,12 +84,20 @@ public class TimelineActivity extends ActionBarActivity {
         populateTimeline(FetchMode.NEW_TWEETS);
     }
 
+    private Boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+    }
+
     private long getMaxId() {
         return tweets.get(tweets.size() - 1).getUid() - 1;
     }
 
     private void populateTimeline(final FetchMode mode) {
-        if (forceOfflineMode) {
+        if (!isNetworkAvailable()){
+            showNetworkErrorToast();
             return;
         }
         long maxId = 0;
@@ -110,7 +121,8 @@ public class TimelineActivity extends ActionBarActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Log.d("DEBUG", errorResponse.toString());
+                if (errorResponse != null)
+                    Log.d("DEBUG", errorResponse.toString());
                 swipeContainer.setRefreshing(false);
                 showNetworkErrorToast();
             }
@@ -118,6 +130,10 @@ public class TimelineActivity extends ActionBarActivity {
     }
 
     private void getProfile() {
+        if (!isNetworkAvailable()) {
+            showNetworkErrorToast();
+            return;
+        }
         client.getProfile(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -126,18 +142,21 @@ public class TimelineActivity extends ActionBarActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Log.d("DEBUG", errorResponse.toString());
+                if (errorResponse != null)
+                    Log.d("DEBUG", errorResponse.toString());
                 showNetworkErrorToast();
             }
 
             public void onFailure(int statusCode, Header[] headers, String errorString, Throwable throwable) {
-                Log.d("DEBUG", errorString);
+                if (errorString != null)
+                    Log.d("DEBUG", errorString);
                 showNetworkErrorToast();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                Log.d("DEBUG", errorResponse.toString());
+                if (errorResponse != null)
+                    Log.d("DEBUG", errorResponse.toString());
                 showNetworkErrorToast();
             }
         });
@@ -160,13 +179,7 @@ public class TimelineActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_compose) {
-            if (user != null) {
-                compose(null);
-                return true;
-            } else {
-                showNetworkErrorToast();
-                return true;
-            }
+            compose(null);
         }
 
         return super.onOptionsItemSelected(item);
@@ -182,6 +195,10 @@ public class TimelineActivity extends ActionBarActivity {
     }
 
     private void compose(Tweet tweetToReplyTo) {
+        if (user == null || !isNetworkAvailable()) {
+            showNetworkErrorToast();
+            return;
+        }
         Intent i = new Intent(this, ComposeActivity.class);
         i.putExtra("user", user);
         if (tweetToReplyTo != null) {
