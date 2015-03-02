@@ -1,10 +1,11 @@
 # codePathTwitterClient
-CodePath HWK 3: Basic twitter Client.
+CodePath HWK 3 & 4: Basic twitter Client.
 
 Time spent: 13 hours spent in total
 
 Completed user stories:
 
+Week 1:
  * [x] Required: User can sign in to Twitter using OAuth login
  * [x] Required: User can view the tweets from their home timeline.
  * [x] Required: User should be displayed the username, name, and body for each tweet
@@ -20,8 +21,24 @@ Completed user stories:
  * [x] Optional: User can select "reply" from detail view to respond to a tweet
  * [x] Optional: Improve the user interface and theme the app to feel "twitter branded"
 
+Time spent: 10 hours spent in total
+
+Week 2:
+ * [x] Required: User can switch between Timeline and Mention views using tabs.
+ * [x] Required: User can view their home timeline tweets.
+ * [x] Required: User can view the recent mentions of their username.
+ * [x] Required: User can navigate to view their own profile
+ * [x] Required: User can see picture, tagline, # of followers, # of following, and tweets on their profile.
+ * [x] Required: User can click on the profile image in any tweet to see another user's profile.
+ * [x] Required: User can see picture, tagline, # of followers, # of following, and tweets of clicked user.
+ * [x] Required: User can infinitely paginate any of these timelines (home, mentions, user) by scrolling to the bottom
+ * [x] Optional: User can select "reply" from detail view to respond to a tweet
+ * [x] Optional: Improve the user interface and theme the app to feel "twitter branded"
+ * [x] Optional: Robust error handling, check if internet is available, handle error cases, network failures
+ * [x] Optional: User can "reply" to any tweet on their home timeline.  
+ * [x] Optional: The user that wrote the original tweet is automatically "@" replied in compose
 Walkthrough of all user stories:
 
-![Video Walkthrough](https://github.com/koda0611/codePathTwitterClient/blob/master/mySimpleTweets.gif)
+![Video Walkthrough](https://github.com/koda0611/codePathTwitterClient/blob/master/mySimpleTweets2.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
