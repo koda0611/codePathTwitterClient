@@ -79,7 +79,6 @@
                 android:src="@drawable/reply"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:onClick="replyTweet"
                 android:layout_marginLeft="7dp"
                 android:maxWidth="16dp"/>
             <ImageView

@@ -9,4 +9,11 @@
         android:icon="@drawable/ic_action_compose"
         android:title="@string/action_compose">
     </item>
+    <item
+        android:id="@+id/action_profile"
+        android:orderInCategory="1"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/action_profile">
+    </item>
 </menu>

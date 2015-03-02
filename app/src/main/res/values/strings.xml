@@ -9,5 +9,9 @@
     <string name="action_compose">compose</string>
     <string name="title_activity_compose">ComposeActivity</string>
     <string name="action_tweet">Tweet</string>
-
+    <string name="action_profile">Profile</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="tweet_count_label">TWEETS</string>
+    <string name="following_label">FOLLOWING</string>
+    <string name="followers_label">FOLLOWERS</string>
 </resources>

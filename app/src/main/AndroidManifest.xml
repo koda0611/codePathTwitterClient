@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <android:uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
@@ -54,8 +55,12 @@
             android:label="@string/title_activity_timeline" >
         </activity>
         <activity
-            android:windowSoftInputMode="stateVisible"
-            android:name=".activities.ComposeActivity">
+            android:name=".activities.ComposeActivity"
+            android:windowSoftInputMode="stateVisible" >
+        </activity>
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:label="@string/title_activity_profile" >
         </activity>
     </application>
 

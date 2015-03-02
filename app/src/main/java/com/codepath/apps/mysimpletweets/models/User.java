@@ -18,6 +18,32 @@ public class User extends Model implements Serializable {
     String screenName;
     @Column(name = "profile_img_url")
     String profileImgUrl;
+    @Column(name = "profile_banner_img_url")
+    String profileBannerImgUrl;
+    @Column(name = "followers_count")
+    int followersCount;
+    @Column(name = "friends_count")
+    int friendsCount;
+    @Column(name = "statuses_count")
+    int statusesCount;
+    @Column(name = "description")
+    String description;
+
+    public String getProfileBannerImgUrl() {
+        return profileBannerImgUrl;
+    }
+
+    public int getFollowersCount() {
+        return followersCount;
+    }
+
+    public int getFriendsCount() {
+        return friendsCount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 
     public String getName() {
         return name;
@@ -39,6 +65,10 @@ public class User extends Model implements Serializable {
         return new Select().from(User.class).where("uid = ?", uid).executeSingle();
     }
 
+    public int getStatusesCount() {
+        return statusesCount;
+    }
+
     public static User createOrUpdate(JSONObject jsonObject) {
         User user = null;
         try {
@@ -51,6 +81,11 @@ public class User extends Model implements Serializable {
             user.uid = jsonObject.getLong("id");
             user.screenName = jsonObject.getString("screen_name");
             user.profileImgUrl = jsonObject.getString("profile_image_url");
+            user.profileBannerImgUrl = jsonObject.optString("profile_banner_url", null);
+            user.friendsCount = jsonObject.getInt("friends_count");
+            user.followersCount = jsonObject.getInt("followers_count");
+            user.statusesCount = jsonObject.getInt("statuses_count");
+            user.description = jsonObject.getString("description");
         } catch (JSONException e) {
             e.printStackTrace();
             return null;

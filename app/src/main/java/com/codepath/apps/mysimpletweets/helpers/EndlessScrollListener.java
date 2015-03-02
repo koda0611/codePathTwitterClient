@@ -1,7 +1,7 @@
 package com.codepath.apps.mysimpletweets.helpers;
 
 import android.widget.AbsListView;
-
+import android.util.Log;
 public abstract class EndlessScrollListener implements AbsListView.OnScrollListener {
     // The minimum amount of items to have below your current scroll position
     // before loading more.
@@ -34,6 +34,9 @@ public abstract class EndlessScrollListener implements AbsListView.OnScrollListe
     @Override
     public void onScroll(AbsListView view,int firstVisibleItem,int visibleItemCount,int totalItemCount)
     {
+        Log.d("DEBUG", "Loading is: " + loading);
+        Log.d("DEBUG", "First visibile item " + firstVisibleItem + " visibleItemCount " + visibleItemCount + " total count: " + totalItemCount);
+        Log.d("DEBUG", "Previous total count: " + previousTotalItemCount);
         // If the total item count is zero and the previous isn't, assume the
         // list is invalidated and should be reset back to initial state
         if (totalItemCount < previousTotalItemCount) {

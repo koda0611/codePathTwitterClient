@@ -1,6 +1,7 @@
 package com.codepath.apps.mysimpletweets.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codepath.apps.mysimpletweets.R;
+import com.codepath.apps.mysimpletweets.activities.ProfileActivity;
+import com.codepath.apps.mysimpletweets.fragments.BaseTimelineFragment;
 import com.codepath.apps.mysimpletweets.models.Tweet;
 import com.squareup.picasso.Picasso;
 
@@ -19,9 +22,10 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class TweetsArrayAdapter extends ArrayAdapter<Tweet> {
-
-    public TweetsArrayAdapter(Context context, List<Tweet> tweets) {
+    BaseTimelineFragment.OnItemSelectedListener listener;
+    public TweetsArrayAdapter(Context context, List<Tweet> tweets, BaseTimelineFragment.OnItemSelectedListener listener) {
         super(context, android.R.layout.simple_list_item_1, tweets);
+        this.listener = listener;
     }
 
     private static class ViewHolder {
@@ -34,13 +38,12 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet> {
         TextView retweetCount;
         TextView favoriteCount;
         TextView body;
-
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Tweet tweet = getItem(position);
+        final Tweet tweet = getItem(position);
         ViewHolder viewHolder;
         if (convertView == null) {
             viewHolder = new ViewHolder();
@@ -83,6 +86,23 @@ public class TweetsArrayAdapter extends ArrayAdapter<Tweet> {
             viewHolder.retweetCount.setText("");
         }
         viewHolder.body.setText(tweet.getBody());
+
+        viewHolder.profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), ProfileActivity.class);
+                i.putExtra("user", tweet.getUser());
+                getContext().startActivity(i);
+            }
+        });
+
+        viewHolder.replyImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Tweet tweet = (Tweet) v.getTag();
+                listener.replyTweet(tweet);
+            }
+        });
         return convertView;
     }
 
