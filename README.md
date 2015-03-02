@@ -32,7 +32,6 @@ Week 2:
  * [x] Required: User can click on the profile image in any tweet to see another user's profile.
  * [x] Required: User can see picture, tagline, # of followers, # of following, and tweets of clicked user.
  * [x] Required: User can infinitely paginate any of these timelines (home, mentions, user) by scrolling to the bottom
- * [x] Optional: User can select "reply" from detail view to respond to a tweet
  * [x] Optional: Improve the user interface and theme the app to feel "twitter branded"
  * [x] Optional: Robust error handling, check if internet is available, handle error cases, network failures
  * [x] Optional: User can "reply" to any tweet on their home timeline.  
